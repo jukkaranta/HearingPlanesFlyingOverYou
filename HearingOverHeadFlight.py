@@ -70,8 +70,8 @@ plots(4.0*s, h, s, t, figures, '4.0 Mach')
 
 # some finalizing for the plots
 for f in figures:
-    plt.xlabel("time relative to fly over moment")
     plt.figure(f)
+    plt.xlabel("time relative to fly over moment")
     plt.grid()
     plt.legend()
 
