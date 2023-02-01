@@ -40,27 +40,45 @@ t = np.linspace(-2.0, 0.25, 3000) # list of values where to calculate
 def plots(p, h, s, t, figures, label):
     loca = location(p, t) # locations at t
     dist = distance(loca, h) # distance at t
-    hearAt = t + hearingDelay(dist, s) # when sound made at time t is heard
+    hearAtTime = t + hearingDelay(dist, s) # when sound made at time t is heard
     plt.figure(figures[0])
     plt.plot(t, loca, label=label)
     plt.figure(figures[1])
     plt.plot(t, dist, label=label)
     plt.figure(figures[2])
-    plt.plot(t, hearAt, label=label)
+    plt.plot(t, hearAtTime, label=label)
     # when is the first to be heard sound emitted and when is it heard
-    tminheardIndex = np.argmin(hearAt)
+    tminheardIndex = np.argmin(hearAtTime)
     tminheard = t[tminheardIndex]
-    heardAtmin = hearAt[tminheardIndex] # when is the first heard sound heard
-    print("Earliest observation:", label, ", emitted: ", tminheard, ", heard: ", heardAtmin)
+    heardAtmin = hearAtTime[tminheardIndex] # when is the first heard sound heard
+    print("Earliest observation:", label, ", emitted at time: ", tminheard, ", heard: ", heardAtmin)
     plt.plot(tminheard, heardAtmin, 'r.') # red dot to when first heard
+    plt.figure(figures[3])
+    plt.plot(loca, hearAtTime, label=label)
+    # from where is the first to be heard sound emitted and when is it heard
+    tminheardIndex = np.argmin(hearAtTime)
+    locaminheard = loca[tminheardIndex]
+    heardAtmin = hearAtTime[tminheardIndex] # when is the first heard sound heard
+    print("Earliest observation:", label, ", emitted at location: ", locaminheard, ", heard: ", heardAtmin)
+    plt.plot(locaminheard, heardAtmin, 'r.') # red dot to when first heard
 
-figures = [None, None, None] # initialize empty 3 element list of figures
+figures = 4*[None] # initialize empty 4 element list of figures
 figures[0] = plt.figure() # Location at time t
 plt.title("Location of the plane relative to fly over point")
+plt.xlabel("time relative to fly over moment [s]")
+plt.ylabel("[m]")
 figures[1] = plt.figure() # Distance to observer a time t
 plt.title("Distance of the plane from observer (accounts for altitude)")
+plt.xlabel("time relative to fly over moment [s]")
+plt.ylabel("[m]")
 figures[2] = plt.figure() # Sound made at time t is heard
 plt.title("When is the sound made at time t heard\nRed dot = first observation")
+plt.xlabel("time relative to fly over moment [s]")
+plt.ylabel("[s]")
+figures[3] = plt.figure() # Sound made at time t is heard
+plt.title("When is the sound coming from a location heard\nRed dot = where first observed sound was emitted")
+plt.xlabel("location relative to fly over location [m]")
+plt.ylabel("[s]")
 
 # Here we go, put the numbers in and plot stuff
 plots(0.5*s, h, s, t, figures, '0.5 Mach')
@@ -71,7 +89,6 @@ plots(4.0*s, h, s, t, figures, '4.0 Mach')
 # some finalizing for the plots
 for f in figures:
     plt.figure(f)
-    plt.xlabel("time relative to fly over moment")
     plt.grid()
     plt.legend()
 
