@@ -23,6 +23,8 @@ Caculate when a sound is heard: Calculate how long it takes for sound to reach y
 
 3rd plot: (time, time when heard) Horizontal axis same as previous plots, vertical axis is the time the sound is heard, i.e. point at coordinates (X, Y) means that sound made by the plane at time X is heard at time Y. For the list of time values, plot a red dot to the smallest "time when heard" value, i.e. the first observation.
 
+4th plot: (location, time when heard) Horizontal axis is the location relative to the observer, vertical axis is time when the sound emitted at that location is heard: (0, 0) coordinates are (directly above observer, at the time of fly over).
+
 ## Notes
 
 The sound the planes make when right above is heard at the same time (= altitude / speed of sound) after the fly over.
@@ -32,3 +34,6 @@ A subsonic Mach < 1.0 plane is heard an infinity away. The earlier it makes the 
 A sonic Mach = 1.0 plane is heard the moment it flies over but that sound comes from an infinity away. If altitude is zero we hear all sound before that time at the same time. The "time when heard" approaches 0 as time goes to -infinity in case of non-zero altitude; or is flat zero for all times <0 in case of zero altitude.
 
 Supersonic Mach > 1.0 planes have a distinct minimum of the "time when heard"-function, i.e. time when they are first heard (that's when the shock wave cone reaches the observer). You hear slower planes first. After hearing that first sound (sonic boom) you actually hear two sounds: a sound the plane made during approach and a sound it made when going away.
+
+The faster the plane the closer the point where the first to be heard sound is emitted. Subsonics from infinity away, infinitely fast directly above and interesting (and realistic) speeds somewhere in between.
+
